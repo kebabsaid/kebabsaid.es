@@ -1,0 +1,669 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kebab Said - Puerto de Mazarrón</title>
+    <script src="https://cdn.tailwindcss.com/3.4.16"></script>
+    <script>tailwind.config={theme:{extend:{colors:{primary:'#FF0000',secondary:'#000000'},borderRadius:{'none':'0px','sm':'4px',DEFAULT:'8px','md':'12px','lg':'16px','xl':'20px','2xl':'24px','3xl':'32px','full':'9999px','button':'8px'}}}}</script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Pacifico&display=swap" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/remixicon/4.6.0/remixicon.min.css" rel="stylesheet">
+    <style>
+        :where([class^="ri-"])::before { content: "\f3c2"; }
+        body {
+            font-family: 'Roboto', sans-serif;
+            background-color: #f9f9f9;
+        }
+        .card-shadow {
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+        }
+        input[type="radio"] {
+            display: none;
+        }
+        .radio-label {
+            cursor: pointer;
+            padding: 0.5rem 1rem;
+            border-radius: 9999px;
+            transition: all 0.3s ease;
+        }
+        input[type="radio"]:checked + .radio-label {
+            background-color: #FF0000;
+            color: white;
+        }
+        input[type="number"]::-webkit-inner-spin-button,
+        input[type="number"]::-webkit-outer-spin-button {
+            -webkit-appearance: none;
+            margin: 0;
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header class="bg-secondary text-white sticky top-0 z-50">
+        <div class="container mx-auto px-4 py-4">
+            <div class="flex flex-col md:flex-row items-center justify-between">
+                <div class="flex items-center mb-4 md:mb-0">
+                    <h1 class="font-['Pacifico'] text-3xl text-white">Kebab Said</h1>
+                </div>
+                <div class="flex flex-col md:flex-row items-center">
+                    <a href="tel:968594276" class="flex items-center text-white hover:text-primary transition-colors mb-2 md:mb-0 md:mr-6">
+                        <div class="w-6 h-6 flex items-center justify-center mr-2">
+                            <i class="ri-phone-fill ri-lg"></i>
+                        </div>
+                        <span class="text-lg font-medium">968 59 42 76</span>
+                    </a>
+                    <div class="flex items-center text-white">
+                        <div class="w-6 h-6 flex items-center justify-center mr-2">
+                            <i class="ri-map-pin-fill ri-lg"></i>
+                        </div>
+                        <span>30860 Puerto de Mazarrón, Murcia</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="relative bg-secondary py-16">
+        <div class="absolute inset-0 opacity-30" style="background-image: url('https://readdy.ai/api/search-image?query=delicious%2520kebab%2520with%2520fresh%2520ingredients%2520on%2520a%2520dark%2520background%252C%2520juicy%2520grilled%2520meat%2520with%2520vegetables%2520and%2520sauce%252C%2520professional%2520food%2520photography%2520with%2520dramatic%2520lighting%252C%2520high%2520resolution%252C%2520gourmet%2520presentation&width=1200&height=600&seq=1&orientation=landscape'); background-size: cover; background-position: center;"></div>
+        <div class="container mx-auto px-4 relative z-10">
+            <div class="text-center">
+                <h2 class="text-4xl md:text-5xl font-bold text-white mb-4">Auténtico Kebab Turco</h2>
+                <p class="text-xl text-white mb-8 max-w-2xl mx-auto">Disfruta de los sabores tradicionales del Mediterráneo con nuestras recetas auténticas preparadas con ingredientes frescos.</p>
+                <a href="tel:968594276" class="inline-flex items-center bg-primary text-white px-6 py-3 rounded-button font-medium hover:bg-opacity-90 transition-colors whitespace-nowrap">
+                    <div class="w-5 h-5 flex items-center justify-center mr-2">
+                        <i class="ri-phone-fill"></i>
+                    </div>
+                    Llamar para pedir
+                </a>
+            </div>
+        </div>
+    </section>
+    <!-- Menu Navigation -->
+    <section class="bg-white py-8 sticky top-[76px] z-40 border-b border-gray-200">
+        <div class="container mx-auto px-4">
+            <div class="flex justify-center">
+                <div class="inline-flex bg-gray-100 p-1 rounded-full">
+                    <button id="tab-pita" class="px-4 py-2 rounded-full text-secondary font-medium bg-white shadow-sm whitespace-nowrap active">Pita Kebab</button>
+                    <button id="tab-durum" class="px-4 py-2 rounded-full text-secondary font-medium whitespace-nowrap">Durum Kebab</button>
+                    <button id="tab-platos" class="px-4 py-2 rounded-full text-secondary font-medium whitespace-nowrap">Platos Kebab</button>
+                    <button id="tab-bebidas" class="px-4 py-2 rounded-full text-secondary font-medium whitespace-nowrap">Bebidas</button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Menu Content -->
+    <section class="py-12 bg-white">
+        <div class="container mx-auto px-4">
+            <!-- Pita Kebab Section -->
+            <div id="content-pita" class="menu-content">
+                <h3 class="text-3xl font-bold text-center mb-10 text-secondary">Pita Kebab</h3>
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                    <!-- Pita Kebab Item 1 -->
+                    <div class="bg-white rounded shadow-md overflow-hidden card-shadow">
+                        <div class="h-48 overflow-hidden">
+                            <img src="https://readdy.ai/api/search-image?query=delicious%2520pita%2520kebab%2520with%2520fresh%2520vegetables%2520and%2520sauce%252C%2520wrapped%2520in%2520pita%2520bread%252C%2520professional%2520food%2520photography%2520with%2520clean%2520white%2520background%252C%2520high%2520resolution%252C%2520appetizing%2520presentation&width=600&height=400&seq=2&orientation=landscape" alt="Pita Kebab Clásico" class="w-full h-full object-cover object-top">
+                        </div>
+                        <div class="p-6">
+                            <h4 class="text-xl font-bold mb-2">Pita Kebab Clásico</h4>
+                            <p class="text-gray-600 mb-4">Pan de pita relleno de carne, lechuga, tomate, cebolla y salsa a elegir.</p>
+                            
+                            <div class="mb-4">
+                                <p class="font-medium mb-2">Elige tu carne:</p>
+                                <div class="flex space-x-2">
+                                    <input type="radio" name="meat-pita1" id="pollo-pita1" checked>
+                                    <label for="pollo-pita1" class="radio-label border border-gray-300 text-sm">Pollo</label>
+                                    
+                                    <input type="radio" name="meat-pita1" id="ternera-pita1">
+                                    <label for="ternera-pita1" class="radio-label border border-gray-300 text-sm">Ternera</label>
+                                    
+                                    <input type="radio" name="meat-pita1" id="mixto-pita1">
+                                    <label for="mixto-pita1" class="radio-label border border-gray-300 text-sm">Mixto</label>
+                                </div>
+                            </div>
+                            
+                            <div class="flex justify-between items-center">
+                                <span class="text-xl font-bold text-primary">5,50 €</span>
+                                <button class="bg-primary text-white px-4 py-2 rounded-button hover:bg-opacity-90 transition-colors flex items-center whitespace-nowrap">
+                                    <div class="w-5 h-5 flex items-center justify-center mr-1">
+                                        <i class="ri-add-line"></i>
+                                    </div>
+                                    Añadir
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Pita Kebab Item 2 -->
+                    <div class="bg-white rounded shadow-md overflow-hidden card-shadow">
+                        <div class="h-48 overflow-hidden">
+                            <img src="https://readdy.ai/api/search-image?query=delicious%2520pita%2520kebab%2520with%2520cheese%252C%2520fresh%2520vegetables%2520and%2520sauce%252C%2520wrapped%2520in%2520pita%2520bread%252C%2520professional%2520food%2520photography%2520with%2520clean%2520white%2520background%252C%2520high%2520resolution%252C%2520appetizing%2520presentation&width=600&height=400&seq=3&orientation=landscape" alt="Pita Kebab con Queso" class="w-full h-full object-cover object-top">
+                        </div>
+                        <div class="p-6">
+                            <h4 class="text-xl font-bold mb-2">Pita Kebab con Queso</h4>
+                            <p class="text-gray-600 mb-4">Pan de pita relleno de carne, queso fundido, lechuga, tomate, cebolla y salsa.</p>
+                            
+                            <div class="mb-4">
+                                <p class="font-medium mb-2">Elige tu carne:</p>
+                                <div class="flex space-x-2">
+                                    <input type="radio" name="meat-pita2" id="pollo-pita2" checked>
+                                    <label for="pollo-pita2" class="radio-label border border-gray-300 text-sm">Pollo</label>
+                                    
+                                    <input type="radio" name="meat-pita2" id="ternera-pita2">
+                                    <label for="ternera-pita2" class="radio-label border border-gray-300 text-sm">Ternera</label>
+                                    
+                                    <input type="radio" name="meat-pita2" id="mixto-pita2">
+                                    <label for="mixto-pita2" class="radio-label border border-gray-300 text-sm">Mixto</label>
+                                </div>
+                            </div>
+                            
+                            <div class="flex justify-between items-center">
+                                <span class="text-xl font-bold text-primary">6,00 €</span>
+                                <button class="bg-primary text-white px-4 py-2 rounded-button hover:bg-opacity-90 transition-colors flex items-center whitespace-nowrap">
+                                    <div class="w-5 h-5 flex items-center justify-center mr-1">
+                                        <i class="ri-add-line"></i>
+                                    </div>
+                                    Añadir
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Pita Kebab Item 3 -->
+                    <div class="bg-white rounded shadow-md overflow-hidden card-shadow">
+                        <div class="h-48 overflow-hidden">
+                            <img src="https://readdy.ai/api/search-image?query=delicious%2520pita%2520kebab%2520with%2520special%2520sauce%252C%2520fresh%2520vegetables%2520and%2520extra%2520meat%252C%2520wrapped%2520in%2520pita%2520bread%252C%2520professional%2520food%2520photography%2520with%2520clean%2520white%2520background%252C%2520high%2520resolution%252C%2520appetizing%2520presentation&width=600&height=400&seq=4&orientation=landscape" alt="Pita Kebab Especial" class="w-full h-full object-cover object-top">
+                        </div>
+                        <div class="p-6">
+                            <h4 class="text-xl font-bold mb-2">Pita Kebab Especial</h4>
+                            <p class="text-gray-600 mb-4">Pan de pita relleno con doble de carne, lechuga, tomate, cebolla y salsa especial de la casa.</p>
+                            
+                            <div class="mb-4">
+                                <p class="font-medium mb-2">Elige tu carne:</p>
+                                <div class="flex space-x-2">
+                                    <input type="radio" name="meat-pita3" id="pollo-pita3" checked>
+                                    <label for="pollo-pita3" class="radio-label border border-gray-300 text-sm">Pollo</label>
+                                    
+                                    <input type="radio" name="meat-pita3" id="ternera-pita3">
+                                    <label for="ternera-pita3" class="radio-label border border-gray-300 text-sm">Ternera</label>
+                                    
+                                    <input type="radio" name="meat-pita3" id="mixto-pita3">
+                                    <label for="mixto-pita3" class="radio-label border border-gray-300 text-sm">Mixto</label>
+                                </div>
+                            </div>
+                            
+                            <div class="flex justify-between items-center">
+                                <span class="text-xl font-bold text-primary">7,00 €</span>
+                                <button class="bg-primary text-white px-4 py-2 rounded-button hover:bg-opacity-90 transition-colors flex items-center whitespace-nowrap">
+                                    <div class="w-5 h-5 flex items-center justify-center mr-1">
+                                        <i class="ri-add-line"></i>
+                                    </div>
+                                    Añadir
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Durum Kebab Section -->
+            <div id="content-durum" class="menu-content hidden">
+                <h3 class="text-3xl font-bold text-center mb-10 text-secondary">Durum Kebab</h3>
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                    <!-- Durum Kebab Item 1 -->
+                    <div class="bg-white rounded shadow-md overflow-hidden card-shadow">
+                        <div class="h-48 overflow-hidden">
+                            <img src="https://readdy.ai/api/search-image?query=delicious%2520durum%2520kebab%2520wrap%2520with%2520fresh%2520vegetables%2520and%2520sauce%252C%2520rolled%2520in%2520thin%2520lavash%2520bread%252C%2520professional%2520food%2520photography%2520with%2520clean%2520white%2520background%252C%2520high%2520resolution%252C%2520appetizing%2520presentation&width=600&height=400&seq=5&orientation=landscape" alt="Durum Kebab Clásico" class="w-full h-full object-cover object-top">
+                        </div>
+                        <div class="p-6">
+                            <h4 class="text-xl font-bold mb-2">Durum Kebab Clásico</h4>
+                            <p class="text-gray-600 mb-4">Pan de durum enrollado con carne, lechuga, tomate, cebolla y salsa a elegir.</p>
+                            
+                            <div class="mb-4">
+                                <p class="font-medium mb-2">Elige tu carne:</p>
+                                <div class="flex space-x-2">
+                                    <input type="radio" name="meat-durum1" id="pollo-durum1" checked>
+                                    <label for="pollo-durum1" class="radio-label border border-gray-300 text-sm">Pollo</label>
+                                    
+                                    <input type="radio" name="meat-durum1" id="ternera-durum1">
+                                    <label for="ternera-durum1" class="radio-label border border-gray-300 text-sm">Ternera</label>
+                                    
+                                    <input type="radio" name="meat-durum1" id="mixto-durum1">
+                                    <label for="mixto-durum1" class="radio-label border border-gray-300 text-sm">Mixto</label>
+                                </div>
+                            </div>
+                            
+                            <div class="flex justify-between items-center">
+                                <span class="text-xl font-bold text-primary">6,00 €</span>
+                                <button class="bg-primary text-white px-4 py-2 rounded-button hover:bg-opacity-90 transition-colors flex items-center whitespace-nowrap">
+                                    <div class="w-5 h-5 flex items-center justify-center mr-1">
+                                        <i class="ri-add-line"></i>
+                                    </div>
+                                    Añadir
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Durum Kebab Item 2 -->
+                    <div class="bg-white rounded shadow-md overflow-hidden card-shadow">
+                        <div class="h-48 overflow-hidden">
+                            <img src="https://readdy.ai/api/search-image?query=delicious%2520durum%2520kebab%2520wrap%2520with%2520cheese%252C%2520fresh%2520vegetables%2520and%2520sauce%252C%2520rolled%2520in%2520thin%2520lavash%2520bread%252C%2520professional%2520food%2520photography%2520with%2520clean%2520white%2520background%252C%2520high%2520resolution%252C%2520appetizing%2520presentation&width=600&height=400&seq=6&orientation=landscape" alt="Durum Kebab con Queso" class="w-full h-full object-cover object-top">
+                        </div>
+                        <div class="p-6">
+                            <h4 class="text-xl font-bold mb-2">Durum Kebab con Queso</h4>
+                            <p class="text-gray-600 mb-4">Pan de durum enrollado con carne, queso fundido, lechuga, tomate, cebolla y salsa.</p>
+                            
+                            <div class="mb-4">
+                                <p class="font-medium mb-2">Elige tu carne:</p>
+                                <div class="flex space-x-2">
+                                    <input type="radio" name="meat-durum2" id="pollo-durum2" checked>
+                                    <label for="pollo-durum2" class="radio-label border border-gray-300 text-sm">Pollo</label>
+                                    
+                                    <input type="radio" name="meat-durum2" id="ternera-durum2">
+                                    <label for="ternera-durum2" class="radio-label border border-gray-300 text-sm">Ternera</label>
+                                    
+                                    <input type="radio" name="meat-durum2" id="mixto-durum2">
+                                    <label for="mixto-durum2" class="radio-label border border-gray-300 text-sm">Mixto</label>
+                                </div>
+                            </div>
+                            
+                            <div class="flex justify-between items-center">
+                                <span class="text-xl font-bold text-primary">6,50 €</span>
+                                <button class="bg-primary text-white px-4 py-2 rounded-button hover:bg-opacity-90 transition-colors flex items-center whitespace-nowrap">
+                                    <div class="w-5 h-5 flex items-center justify-center mr-1">
+                                        <i class="ri-add-line"></i>
+                                    </div>
+                                    Añadir
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Durum Kebab Item 3 -->
+                    <div class="bg-white rounded shadow-md overflow-hidden card-shadow">
+                        <div class="h-48 overflow-hidden">
+                            <img src="https://readdy.ai/api/search-image?query=delicious%2520durum%2520kebab%2520wrap%2520with%2520special%2520sauce%252C%2520fresh%2520vegetables%2520and%2520extra%2520meat%252C%2520rolled%2520in%2520thin%2520lavash%2520bread%252C%2520professional%2520food%2520photography%2520with%2520clean%2520white%2520background%252C%2520high%2520resolution%252C%2520appetizing%2520presentation&width=600&height=400&seq=7&orientation=landscape" alt="Durum Kebab Especial" class="w-full h-full object-cover object-top">
+                        </div>
+                        <div class="p-6">
+                            <h4 class="text-xl font-bold mb-2">Durum Kebab Especial</h4>
+                            <p class="text-gray-600 mb-4">Pan de durum enrollado con doble de carne, lechuga, tomate, cebolla y salsa especial de la casa.</p>
+                            
+                            <div class="mb-4">
+                                <p class="font-medium mb-2">Elige tu carne:</p>
+                                <div class="flex space-x-2">
+                                    <input type="radio" name="meat-durum3" id="pollo-durum3" checked>
+                                    <label for="pollo-durum3" class="radio-label border border-gray-300 text-sm">Pollo</label>
+                                    
+                                    <input type="radio" name="meat-durum3" id="ternera-durum3">
+                                    <label for="ternera-durum3" class="radio-label border border-gray-300 text-sm">Ternera</label>
+                                    
+                                    <input type="radio" name="meat-durum3" id="mixto-durum3">
+                                    <label for="mixto-durum3" class="radio-label border border-gray-300 text-sm">Mixto</label>
+                                </div>
+                            </div>
+                            
+                            <div class="flex justify-between items-center">
+                                <span class="text-xl font-bold text-primary">7,50 €</span>
+                                <button class="bg-primary text-white px-4 py-2 rounded-button hover:bg-opacity-90 transition-colors flex items-center whitespace-nowrap">
+                                    <div class="w-5 h-5 flex items-center justify-center mr-1">
+                                        <i class="ri-add-line"></i>
+                                    </div>
+                                    Añadir
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Platos Kebab Section -->
+            <div id="content-platos" class="menu-content hidden">
+                <h3 class="text-3xl font-bold text-center mb-10 text-secondary">Platos Kebab</h3>
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                    <!-- Plato Kebab Item 1 -->
+                    <div class="bg-white rounded shadow-md overflow-hidden card-shadow">
+                        <div class="h-48 overflow-hidden">
+                            <img src="https://readdy.ai/api/search-image?query=delicious%2520kebab%2520plate%2520with%2520rice%252C%2520fresh%2520vegetables%2520and%2520sauce%252C%2520served%2520with%2520meat%2520on%2520a%2520plate%252C%2520professional%2520food%2520photography%2520with%2520clean%2520white%2520background%252C%2520high%2520resolution%252C%2520appetizing%2520presentation&width=600&height=400&seq=8&orientation=landscape" alt="Plato Kebab con Arroz" class="w-full h-full object-cover object-top">
+                        </div>
+                        <div class="p-6">
+                            <h4 class="text-xl font-bold mb-2">Plato Kebab con Arroz</h4>
+                            <p class="text-gray-600 mb-4">Carne de kebab servida con arroz, ensalada fresca y salsa a elegir.</p>
+                            
+                            <div class="mb-4">
+                                <p class="font-medium mb-2">Elige tu carne:</p>
+                                <div class="flex space-x-2">
+                                    <input type="radio" name="meat-plato1" id="pollo-plato1" checked>
+                                    <label for="pollo-plato1" class="radio-label border border-gray-300 text-sm">Pollo</label>
+                                    
+                                    <input type="radio" name="meat-plato1" id="ternera-plato1">
+                                    <label for="ternera-plato1" class="radio-label border border-gray-300 text-sm">Ternera</label>
+                                    
+                                    <input type="radio" name="meat-plato1" id="mixto-plato1">
+                                    <label for="mixto-plato1" class="radio-label border border-gray-300 text-sm">Mixto</label>
+                                </div>
+                            </div>
+                            
+                            <div class="flex justify-between items-center">
+                                <span class="text-xl font-bold text-primary">8,50 €</span>
+                                <button class="bg-primary text-white px-4 py-2 rounded-button hover:bg-opacity-90 transition-colors flex items-center whitespace-nowrap">
+                                    <div class="w-5 h-5 flex items-center justify-center mr-1">
+                                        <i class="ri-add-line"></i>
+                                    </div>
+                                    Añadir
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Plato Kebab Item 2 -->
+                    <div class="bg-white rounded shadow-md overflow-hidden card-shadow">
+                        <div class="h-48 overflow-hidden">
+                            <img src="https://readdy.ai/api/search-image?query=delicious%2520kebab%2520plate%2520with%2520french%2520fries%252C%2520fresh%2520vegetables%2520and%2520sauce%252C%2520served%2520with%2520meat%2520on%2520a%2520plate%252C%2520professional%2520food%2520photography%2520with%2520clean%2520white%2520background%252C%2520high%2520resolution%252C%2520appetizing%2520presentation&width=600&height=400&seq=9&orientation=landscape" alt="Plato Kebab con Patatas" class="w-full h-full object-cover object-top">
+                        </div>
+                        <div class="p-6">
+                            <h4 class="text-xl font-bold mb-2">Plato Kebab con Patatas</h4>
+                            <p class="text-gray-600 mb-4">Carne de kebab servida con patatas fritas, ensalada fresca y salsa a elegir.</p>
+                            
+                            <div class="mb-4">
+                                <p class="font-medium mb-2">Elige tu carne:</p>
+                                <div class="flex space-x-2">
+                                    <input type="radio" name="meat-plato2" id="pollo-plato2" checked>
+                                    <label for="pollo-plato2" class="radio-label border border-gray-300 text-sm">Pollo</label>
+                                    
+                                    <input type="radio" name="meat-plato2" id="ternera-plato2">
+                                    <label for="ternera-plato2" class="radio-label border border-gray-300 text-sm">Ternera</label>
+                                    
+                                    <input type="radio" name="meat-plato2" id="mixto-plato2">
+                                    <label for="mixto-plato2" class="radio-label border border-gray-300 text-sm">Mixto</label>
+                                </div>
+                            </div>
+                            
+                            <div class="flex justify-between items-center">
+                                <span class="text-xl font-bold text-primary">8,50 €</span>
+                                <button class="bg-primary text-white px-4 py-2 rounded-button hover:bg-opacity-90 transition-colors flex items-center whitespace-nowrap">
+                                    <div class="w-5 h-5 flex items-center justify-center mr-1">
+                                        <i class="ri-add-line"></i>
+                                    </div>
+                                    Añadir
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Plato Kebab Item 3 -->
+                    <div class="bg-white rounded shadow-md overflow-hidden card-shadow">
+                        <div class="h-48 overflow-hidden">
+                            <img src="https://readdy.ai/api/search-image?query=delicious%2520kebab%2520special%2520plate%2520with%2520rice%252C%2520french%2520fries%252C%2520fresh%2520vegetables%2520and%2520sauce%252C%2520served%2520with%2520extra%2520meat%2520on%2520a%2520plate%252C%2520professional%2520food%2520photography%2520with%2520clean%2520white%2520background%252C%2520high%2520resolution%252C%2520appetizing%2520presentation&width=600&height=400&seq=10&orientation=landscape" alt="Plato Kebab Especial" class="w-full h-full object-cover object-top">
+                        </div>
+                        <div class="p-6">
+                            <h4 class="text-xl font-bold mb-2">Plato Kebab Especial</h4>
+                            <p class="text-gray-600 mb-4">Carne de kebab servida con arroz, patatas fritas, ensalada fresca y salsa especial de la casa.</p>
+                            
+                            <div class="mb-4">
+                                <p class="font-medium mb-2">Elige tu carne:</p>
+                                <div class="flex space-x-2">
+                                    <input type="radio" name="meat-plato3" id="pollo-plato3" checked>
+                                    <label for="pollo-plato3" class="radio-label border border-gray-300 text-sm">Pollo</label>
+                                    
+                                    <input type="radio" name="meat-plato3" id="ternera-plato3">
+                                    <label for="ternera-plato3" class="radio-label border border-gray-300 text-sm">Ternera</label>
+                                    
+                                    <input type="radio" name="meat-plato3" id="mixto-plato3">
+                                    <label for="mixto-plato3" class="radio-label border border-gray-300 text-sm">Mixto</label>
+                                </div>
+                            </div>
+                            
+                            <div class="flex justify-between items-center">
+                                <span class="text-xl font-bold text-primary">10,00 €</span>
+                                <button class="bg-primary text-white px-4 py-2 rounded-button hover:bg-opacity-90 transition-colors flex items-center whitespace-nowrap">
+                                    <div class="w-5 h-5 flex items-center justify-center mr-1">
+                                        <i class="ri-add-line"></i>
+                                    </div>
+                                    Añadir
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Bebidas Section -->
+            <div id="content-bebidas" class="menu-content hidden">
+                <h3 class="text-3xl font-bold text-center mb-10 text-secondary">Bebidas</h3>
+                <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
+                    <!-- Bebida Item 1 -->
+                    <div class="bg-white rounded shadow-md overflow-hidden card-shadow">
+                        <div class="h-40 overflow-hidden">
+                            <img src="https://readdy.ai/api/search-image?query=coca%2520cola%2520can%2520on%2520clean%2520white%2520background%252C%2520professional%2520product%2520photography%252C%2520high%2520resolution%252C%2520commercial%2520quality&width=400&height=300&seq=11&orientation=portrait" alt="Coca-Cola" class="w-full h-full object-cover object-top">
+                        </div>
+                        <div class="p-4">
+                            <h4 class="text-lg font-bold mb-1">Coca-Cola</h4>
+                            <div class="flex justify-between items-center">
+                                <span class="text-lg font-bold text-primary">2,00 €</span>
+                                <button class="bg-primary text-white px-3 py-1 rounded-button hover:bg-opacity-90 transition-colors flex items-center whitespace-nowrap text-sm">
+                                    <div class="w-4 h-4 flex items-center justify-center mr-1">
+                                        <i class="ri-add-line"></i>
+                                    </div>
+                                    Añadir
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Bebida Item 2 -->
+                    <div class="bg-white rounded shadow-md overflow-hidden card-shadow">
+                        <div class="h-40 overflow-hidden">
+                            <img src="https://readdy.ai/api/search-image?query=fanta%2520orange%2520can%2520on%2520clean%2520white%2520background%252C%2520professional%2520product%2520photography%252C%2520high%2520resolution%252C%2520commercial%2520quality&width=400&height=300&seq=12&orientation=portrait" alt="Fanta Naranja" class="w-full h-full object-cover object-top">
+                        </div>
+                        <div class="p-4">
+                            <h4 class="text-lg font-bold mb-1">Fanta Naranja</h4>
+                            <div class="flex justify-between items-center">
+                                <span class="text-lg font-bold text-primary">2,00 €</span>
+                                <button class="bg-primary text-white px-3 py-1 rounded-button hover:bg-opacity-90 transition-colors flex items-center whitespace-nowrap text-sm">
+                                    <div class="w-4 h-4 flex items-center justify-center mr-1">
+                                        <i class="ri-add-line"></i>
+                                    </div>
+                                    Añadir
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Bebida Item 3 -->
+                    <div class="bg-white rounded shadow-md overflow-hidden card-shadow">
+                        <div class="h-40 overflow-hidden">
+                            <img src="https://readdy.ai/api/search-image?query=sprite%2520can%2520on%2520clean%2520white%2520background%252C%2520professional%2520product%2520photography%252C%2520high%2520resolution%252C%2520commercial%2520quality&width=400&height=300&seq=13&orientation=portrait" alt="Sprite" class="w-full h-full object-cover object-top">
+                        </div>
+                        <div class="p-4">
+                            <h4 class="text-lg font-bold mb-1">Sprite</h4>
+                            <div class="flex justify-between items-center">
+                                <span class="text-lg font-bold text-primary">2,00 €</span>
+                                <button class="bg-primary text-white px-3 py-1 rounded-button hover:bg-opacity-90 transition-colors flex items-center whitespace-nowrap text-sm">
+                                    <div class="w-4 h-4 flex items-center justify-center mr-1">
+                                        <i class="ri-add-line"></i>
+                                    </div>
+                                    Añadir
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Bebida Item 4 -->
+                    <div class="bg-white rounded shadow-md overflow-hidden card-shadow">
+                        <div class="h-40 overflow-hidden">
+                            <img src="https://readdy.ai/api/search-image?query=water%2520bottle%2520on%2520clean%2520white%2520background%252C%2520professional%2520product%2520photography%252C%2520high%2520resolution%252C%2520commercial%2520quality&width=400&height=300&seq=14&orientation=portrait" alt="Agua Mineral" class="w-full h-full object-cover object-top">
+                        </div>
+                        <div class="p-4">
+                            <h4 class="text-lg font-bold mb-1">Agua Mineral</h4>
+                            <div class="flex justify-between items-center">
+                                <span class="text-lg font-bold text-primary">1,50 €</span>
+                                <button class="bg-primary text-white px-3 py-1 rounded-button hover:bg-opacity-90 transition-colors flex items-center whitespace-nowrap text-sm">
+                                    <div class="w-4 h-4 flex items-center justify-center mr-1">
+                                        <i class="ri-add-line"></i>
+                                    </div>
+                                    Añadir
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Bebida Item 5 -->
+                    <div class="bg-white rounded shadow-md overflow-hidden card-shadow">
+                        <div class="h-40 overflow-hidden">
+                            <img src="https://readdy.ai/api/search-image?query=beer%2520bottle%2520on%2520clean%2520white%2520background%252C%2520professional%2520product%2520photography%252C%2520high%2520resolution%252C%2520commercial%2520quality&width=400&height=300&seq=15&orientation=portrait" alt="Cerveza" class="w-full h-full object-cover object-top">
+                        </div>
+                        <div class="p-4">
+                            <h4 class="text-lg font-bold mb-1">Cerveza</h4>
+                            <div class="flex justify-between items-center">
+                                <span class="text-lg font-bold text-primary">2,50 €</span>
+                                <button class="bg-primary text-white px-3 py-1 rounded-button hover:bg-opacity-90 transition-colors flex items-center whitespace-nowrap text-sm">
+                                    <div class="w-4 h-4 flex items-center justify-center mr-1">
+                                        <i class="ri-add-line"></i>
+                                    </div>
+                                    Añadir
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Bebida Item 6 -->
+                    <div class="bg-white rounded shadow-md overflow-hidden card-shadow">
+                        <div class="h-40 overflow-hidden">
+                            <img src="https://readdy.ai/api/search-image?query=ayran%2520yogurt%2520drink%2520on%2520clean%2520white%2520background%252C%2520professional%2520product%2520photography%252C%2520high%2520resolution%252C%2520commercial%2520quality&width=400&height=300&seq=16&orientation=portrait" alt="Ayran" class="w-full h-full object-cover object-top">
+                        </div>
+                        <div class="p-4">
+                            <h4 class="text-lg font-bold mb-1">Ayran</h4>
+                            <div class="flex justify-between items-center">
+                                <span class="text-lg font-bold text-primary">2,00 €</span>
+                                <button class="bg-primary text-white px-3 py-1 rounded-button hover:bg-opacity-90 transition-colors flex items-center whitespace-nowrap text-sm">
+                                    <div class="w-4 h-4 flex items-center justify-center mr-1">
+                                        <i class="ri-add-line"></i>
+                                    </div>
+                                    Añadir
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Bebida Item 7 -->
+                    <div class="bg-white rounded shadow-md overflow-hidden card-shadow">
+                        <div class="h-40 overflow-hidden">
+                            <img src="https://readdy.ai/api/search-image?query=orange%2520juice%2520in%2520glass%2520on%2520clean%2520white%2520background%252C%2520professional%2520product%2520photography%252C%2520high%2520resolution%252C%2520commercial%2520quality&width=400&height=300&seq=17&orientation=portrait" alt="Zumo de Naranja" class="w-full h-full object-cover object-top">
+                        </div>
+                        <div class="p-4">
+                            <h4 class="text-lg font-bold mb-1">Zumo de Naranja</h4>
+                            <div class="flex justify-between items-center">
+                                <span class="text-lg font-bold text-primary">2,50 €</span>
+                                <button class="bg-primary text-white px-3 py-1 rounded-button hover:bg-opacity-90 transition-colors flex items-center whitespace-nowrap text-sm">
+                                    <div class="w-4 h-4 flex items-center justify-center mr-1">
+                                        <i class="ri-add-line"></i>
+                                    </div>
+                                    Añadir
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Bebida Item 8 -->
+                    <div class="bg-white rounded shadow-md overflow-hidden card-shadow">
+                        <div class="h-40 overflow-hidden">
+                            <img src="https://readdy.ai/api/search-image?query=turkish%2520tea%2520in%2520traditional%2520glass%2520on%2520clean%2520white%2520background%252C%2520professional%2520product%2520photography%252C%2520high%2520resolution%252C%2520commercial%2520quality&width=400&height=300&seq=18&orientation=portrait" alt="Té Turco" class="w-full h-full object-cover object-top">
+                        </div>
+                        <div class="p-4">
+                            <h4 class="text-lg font-bold mb-1">Té Turco</h4>
+                            <div class="flex justify-between items-center">
+                                <span class="text-lg font-bold text-primary">1,50 €</span>
+                                <button class="bg-primary text-white px-3 py-1 rounded-button hover:bg-opacity-90 transition-colors flex items-center whitespace-nowrap text-sm">
+                                    <div class="w-4 h-4 flex items-center justify-center mr-1">
+                                        <i class="ri-add-line"></i>
+                                    </div>
+                                    Añadir
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-secondary text-white py-10">
+        <div class="container mx-auto px-4">
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <div>
+                    <h3 class="text-xl font-bold mb-4">Contacto</h3>
+                    <p class="flex items-center mb-2">
+                        <div class="w-5 h-5 flex items-center justify-center mr-2">
+                            <i class="ri-phone-fill"></i>
+                        </div>
+                        <a href="tel:968594276" class="hover:text-primary transition-colors">968 59 42 76</a>
+                    </p>
+                    <p class="flex items-center">
+                        <div class="w-5 h-5 flex items-center justify-center mr-2">
+                            <i class="ri-map-pin-fill"></i>
+                        </div>
+                        <span>30860 Puerto de Mazarrón, Murcia</span>
+                    </p>
+                </div>
+                
+                <div>
+                    <h3 class="text-xl font-bold mb-4">Horario</h3>
+                    <div class="grid grid-cols-2 gap-2">
+                        <div>Lunes - Jueves:</div>
+                        <div>12:00 - 23:00</div>
+                        <div>Viernes - Sábado:</div>
+                        <div>12:00 - 00:00</div>
+                        <div>Domingo:</div>
+                        <div>12:00 - 23:00</div>
+                    </div>
+                </div>
+                
+                <div>
+                    <h3 class="text-xl font-bold mb-4">Ubicación</h3>
+                    <div class="h-40 bg-gray-800 rounded overflow-hidden">
+                        <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d12674.161610731266!2d-1.2621!3d37.5608!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0xd6d7a2c1ce6e3a3%3A0x403d278a576e540!2s30860%20Puerto%20de%20Mazarr%C3%B3n%2C%20Murcia!5e0!3m2!1ses!2ses!4v1621234567890!5m2!1ses!2ses" width="100%" height="100%" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="mt-8 pt-8 border-t border-gray-700 text-center">
+                <p>&copy; 2025 Kebab Said. Todos los derechos reservados.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const tabs = ['pita', 'durum', 'platos', 'bebidas'];
+            
+            tabs.forEach(tab => {
+                const tabButton = document.getElementById(`tab-${tab}`);
+                const tabContent = document.getElementById(`content-${tab}`);
+                
+                tabButton.addEventListener('click', function() {
+                    // Hide all content
+                    document.querySelectorAll('.menu-content').forEach(content => {
+                        content.classList.add('hidden');
+                    });
+                    
+                    // Remove active class from all tabs
+                    document.querySelectorAll('[id^="tab-"]').forEach(button => {
+                        button.classList.remove('bg-white', 'shadow-sm');
+                    });
+                    
+                    // Show selected content
+                    tabContent.classList.remove('hidden');
+                    
+                    // Add active class to selected tab
+                    tabButton.classList.add('bg-white', 'shadow-sm');
+                });
+            });
+        });
+    </script>
+</body>
+</html>
